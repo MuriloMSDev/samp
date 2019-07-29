@@ -1,0 +1,14 @@
+#!/bin/bash
+php artisan migrate:reset &&
+find storage/app/public -mindepth 1 -not -regex '^storage/app/public/.gitignore' -delete &&
+php artisan storage:link &&
+if [ ! -d "public/vendor/laravel-admin" ]; then
+    php artisan admin:publish &&
+    find resources/lang -mindepth 1 -not -regex '^resources/lang/en\(/.*\)?' -not -regex '^resources/lang/pt-BR\(/.*\)?' -delete;
+fi
+if [ ! -d "public/vendor/laravel-admin-ext/summernote" ]; then
+    php artisan vendor:publish --tag=laravel-admin-summernote
+fi
+php artisan admin:install &&
+php artisan migrate &&
+php artisan db:seed;
