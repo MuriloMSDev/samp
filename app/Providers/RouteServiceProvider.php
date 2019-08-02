@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,8 +24,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
     }
 
@@ -39,7 +38,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapUserRoutes();
     }
 
     /**
@@ -52,8 +51,27 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+            ->namespace("{$this->namespace}\Web")
+            ->group(function () {
+                $this->requireFiles('routes/web');
+            });
+    }
+
+    /**
+     * Define the "user" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapUserRoutes()
+    {
+        Route::prefix('user')
+            ->middleware('web')
+            ->namespace("{$this->namespace}\User")
+            ->group(function () {
+                $this->requireFiles('routes/user');
+            });
     }
 
     /**
@@ -66,8 +84,17 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
+            ->middleware('api')
+            ->namespace("{$this->namespace}\Api")
+            ->group(function () {
+                $this->requireFiles('routes/api');
+            });
+    }
+
+    private function requireFiles($directory)
+    {
+        foreach (File::allFiles(base_path($directory)) as $file) {
+            require_once $file->getRealPath();
+        }
     }
 }
