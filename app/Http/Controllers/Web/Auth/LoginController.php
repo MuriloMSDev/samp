@@ -21,13 +21,6 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -45,5 +38,16 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('web.auth.login');
+    }
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @return string
+     */
+    public function redirectTo()
+    {
+        flash('Seja bem-vindo')->success();
+        return route('user.dashboard');
     }
 }

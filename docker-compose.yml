@@ -39,7 +39,7 @@ services:
 
   #Node Container
   node:
-    image: node:slim
+    image: node:latest
     container_name: samp-node
     tty: true
     user: "node:node"

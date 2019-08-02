@@ -22,13 +22,6 @@ class ResetPasswordController extends Controller
     use ResetsPasswords;
 
     /**
-     * Where to redirect users after resetting their password.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -52,5 +45,16 @@ class ResetPasswordController extends Controller
         return view('web.auth.passwords.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
+    }
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @return string
+     */
+    public function redirectTo()
+    {
+        flash('Seja bem-vindo')->success();
+        return route('user.dashboard');
     }
 }

@@ -68,6 +68,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('user')
             ->middleware('web')
+            ->as('user.')
             ->namespace("{$this->namespace}\User")
             ->group(function () {
                 $this->requireFiles('routes/user');

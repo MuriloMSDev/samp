@@ -21,13 +21,6 @@ class VerificationController extends Controller
     use VerifiesEmails;
 
     /**
-     * Where to redirect users after verification.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -50,5 +43,16 @@ class VerificationController extends Controller
         return $request->user()->hasVerifiedEmail()
                         ? redirect($this->redirectPath())
                         : view('web.auth.verify');
+    }
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @return string
+     */
+    public function redirectTo()
+    {
+        flash('Seja bem-vindo(a)')->success();
+        return route('user.dashboard');
     }
 }
