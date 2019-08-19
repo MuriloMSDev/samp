@@ -14,7 +14,7 @@
                 <img src="{{ asset('images/user.png') }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ user()->name }}</a>
+                <a href="#" class="d-block">{{ user('admin')->name }}</a>
             </div>
         </div>
 
@@ -22,11 +22,11 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('user.dashboard') }}" class="nav-link {{ active('user.dashboard') }}">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ active('admin.dashboard') }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
-                    <a href="{{ route('user.logout') }}" method="POST" class="nav-link">
+                    <a href="{{ route('admin.logout') }}" method="POST" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>Sair</p>
                     </a>

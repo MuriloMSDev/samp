@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Web\Auth;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
 
 class ResetPasswordController extends Controller
 {
@@ -28,7 +30,7 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:admin');
     }
 
     /**
@@ -42,7 +44,7 @@ class ResetPasswordController extends Controller
      */
     public function showResetForm(Request $request, $token = null)
     {
-        return view('web.auth.passwords.reset')->with(
+        return view('admin.auth.passwords.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
     }
@@ -55,6 +57,26 @@ class ResetPasswordController extends Controller
     public function redirectTo()
     {
         flash('Seja bem-vindo')->success();
-        return route('user.dashboard');
+        return route('admin.dashboard');
+    }
+
+    /**
+     * Get the broker to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\PasswordBroker
+     */
+    public function broker()
+    {
+        return Password::broker('admins');
+    }
+
+    /**
+     * Get the guard to be used during password reset.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 }

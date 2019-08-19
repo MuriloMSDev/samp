@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
@@ -14,7 +14,7 @@ class DashboardController extends Controller
     public function index()
     {
         return $this->view(
-            'user.dashboard.index',
+            'admin.dashboard.index',
             'Dashboard',
             [
                 [

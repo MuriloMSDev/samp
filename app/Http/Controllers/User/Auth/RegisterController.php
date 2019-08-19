@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Web\Auth;
+namespace App\Http\Controllers\User\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -30,7 +31,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:user');
     }
 
     /**
@@ -40,7 +41,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('web.auth.register');
+        return view('user.auth.register');
     }
 
     /**
@@ -71,6 +72,16 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    /**
+     * Get the guard to be used during registration.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('user');
     }
 
     /**

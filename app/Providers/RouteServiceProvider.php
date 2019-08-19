@@ -39,6 +39,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
 
         $this->mapUserRoutes();
+
+        $this->mapAdminRoutes();
     }
 
     /**
@@ -72,6 +74,24 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace("{$this->namespace}\User")
             ->group(function () {
                 $this->requireFiles('routes/user');
+            });
+    }
+
+    /**
+     * Define the "admin" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapAdminRoutes()
+    {
+        Route::prefix('admin')
+            ->middleware('web')
+            ->as('admin.')
+            ->namespace("{$this->namespace}\Admin")
+            ->group(function () {
+                $this->requireFiles('routes/admin');
             });
     }
 

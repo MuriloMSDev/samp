@@ -1,5 +1,5 @@
 <?php
 
 Route::get('/dashboard', 'DashboardController@index')
-    ->middleware('auth:user')
+    ->middleware('auth:admin')
     ->name('dashboard');
