@@ -110,7 +110,11 @@ tasks:
       - task:
           name: app
           args:
-            - find storage/app/public -mindepth 1 -not -regex '^storage/app/public/.gitignore' -delete && php artisan storage:link
+            - find storage/app/public -mindepth 1 -not -regex '^storage/app/public/.gitignore' -delete
+      - task:
+          name: app
+          args:
+            - php artisan storage:link
       - task:
           name: app
           args:
