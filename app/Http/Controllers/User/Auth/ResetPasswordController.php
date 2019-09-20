@@ -44,9 +44,52 @@ class ResetPasswordController extends Controller
      */
     public function showResetForm(Request $request, $token = null)
     {
-        return view('user.auth.passwords.reset')->with(
+        return view('shared.auth.passwords.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
+    }
+
+    /**
+     * Get the password reset validation rules.
+     *
+     * @return array
+     */
+    protected function rules()
+    {
+        return [
+            'reset_token'    => 'required',
+            'reset_email'    => 'required|email',
+            'reset_password' => 'required|confirmed|min:8',
+        ];
+    }
+
+    /**
+     * Get the password reset credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        return [
+            'email'                 => $request->get('reset_email'),
+            'password'              => $request->get('reset_password'),
+            'password_confirmation' => $request->get('reset_password_confirmation'),
+            'token'                 => $request->get('reset_token')
+        ];
+    }
+
+    /**
+     * Get the response for a failed password reset.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendResetFailedResponse(Request $request, $response)
+    {
+        return back()->withInput($request->only('reset_email'))
+            ->withErrors(['reset_email' => trans($response)]);
     }
 
     /**
