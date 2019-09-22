@@ -1,7 +1,7 @@
 @if (session('confirmation'))
     <div flash data-message='{"level": "info", "message": "{{ session('confirmation') }}"}'></div>
 @endif
-
+{{-- {{dd(session('status'))}} --}}
 @if (session('status'))
     <div flash data-message='{"level": "info", "message": "{{ session('status') }}"}'></div>
 @endif

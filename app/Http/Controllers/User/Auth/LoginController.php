@@ -39,7 +39,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('user.auth.login');
+        return redirect(route('home', '#login-modal'));
     }
 
     /**
@@ -54,7 +54,47 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        return redirect(route('user.login'));
+        return redirect(route('home'));
+    }
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'login_password'  => 'required|string',
+        ]);
+    }
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        return [
+            'email'    => $request->get('login_email'),
+            'password' => $request->get('login_password'),
+        ];
+    }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'login_email';
     }
 
     /**
@@ -65,7 +105,7 @@ class LoginController extends Controller
     public function redirectTo()
     {
         flash('Seja bem-vindo')->success();
-        return route('user.dashboard');
+        return route('home');
     }
 
     /**

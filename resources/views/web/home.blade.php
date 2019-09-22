@@ -1,4 +1,4 @@
-@extends('web.layouts.app')
+@extends('shared.layouts.app')
 
 @section('content')
 <div class="row">

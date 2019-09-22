@@ -6,8 +6,8 @@
     </ul>
 
     <!-- SEARCH FORM -->
-    @include('admin.layouts._navbar-search')
+    @include('shared.layouts._navbar-search')
 
     <!-- Right navbar links -->
-    @include('admin.layouts._navbar-links')
+    @include('shared.layouts._navbar-links')
 </nav>
