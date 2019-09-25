@@ -12,10 +12,10 @@ tasks:
     run:
       - when:
           equal: {ignore: true}
-        command: mkdir -p ~/.cache/composer/files ~/.cache/composer/repo && docker run --rm -it -u $(id -u):$(id -g) -v ~/.cache/composer/:/tmp/cache/ -v $PWD:/app composer ${command} --ignore-platform-reqs
+        command: mkdir -p $HOME/.cache/composer/files $HOME/.cache/composer/repo && docker run --rm -it -u $(id -u):$(id -g) -v $HOME/.cache/composer/:/tmp/cache/ -v $PWD:/app composer ${command} --ignore-platform-reqs
       - when:
           equal: {ignore: false}
-        command: mkdir -p ~/.cache/composer/files ~/.cache/composer/repo && docker run --rm -it -u $(id -u):$(id -g) -v ~/.cache/composer/:/tmp/cache/ -v $PWD:/app composer ${command}
+        command: mkdir -p $HOME/.cache/composer/files $HOME/.cache/composer/repo && docker run --rm -it -u $(id -u):$(id -g) -v $HOME/.cache/composer/:/tmp/cache/ -v $PWD:/app composer ${command}
 
   app:
     usage: access app container and execute commands
