@@ -62,6 +62,11 @@ class Project extends Model
         return $this->languageTool->tool();
     }
 
+    public function classes()
+    {
+        return $this->hasMany(ClassModel::class);
+    }
+
     /** Mutators */
 
     public function getTypeAttribute()
