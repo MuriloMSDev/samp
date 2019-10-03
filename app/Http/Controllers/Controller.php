@@ -13,6 +13,10 @@ class Controller extends BaseController
 
     protected function view($view, $title, $breadcrumb = null)
     {
-        return view($view, compact('title', 'breadcrumb'));
+        if (is_array($title)) {
+            $subTitle = $title['subTitle'] ?? null;
+            $title = $title['title'] ?? null;
+        }
+        return view($view, compact('title', 'subTitle', 'breadcrumb'));
     }
 }

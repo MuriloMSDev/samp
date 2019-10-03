@@ -31,8 +31,8 @@ class Example extends Model
 
     /** Relationships */
 
-    public function function()
+    public function entity()
     {
-        return $this->morphTo('entity');
+        return $this->morphTo();
     }
 }

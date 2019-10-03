@@ -6,8 +6,8 @@ use App\Interfaces\ToolInterface;
 
 class ApiDocAdapter implements ToolInterface
 {
-    public function name()
+    public static function build($data)
     {
-        return 'ApiDoc';
+        return true;
     }
 }

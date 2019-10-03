@@ -56,7 +56,7 @@ class ResetPasswordController extends Controller
      */
     public function redirectTo()
     {
-        flash('Seja bem-vindo')->success();
+        flash(__('messages.welcome'))->success();
         return route('admin.dashboard');
     }
 

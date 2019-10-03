@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParametersTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateParametersTable extends Migration
      */
     public function up()
     {
-        Schema::create('parameters', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('type');
-            $table->unsignedInteger('function_id');
+            $table->string('path');
+            $table->morphs('entity');
             $table->timestamps();
-
-            $table->foreign('function_id')->references('id')
-                ->on('functions')->onDelete('cascade');
         });
     }
 
@@ -33,6 +29,6 @@ class CreateParametersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parameters');
+        Schema::dropIfExists('images');
     }
 }

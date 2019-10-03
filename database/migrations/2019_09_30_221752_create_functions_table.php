@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\FunctionType;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -14,14 +15,15 @@ class CreateFunctionsTable extends Migration
     public function up()
     {
         Schema::create('functions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->text('description')->nullable();
             $table->text('content')->nullable();
+            $table->enum('type_enum', FunctionType::getValues())->nullable();
             $table->text('url')->nullable();
             $table->string('method')->nullable();
             $table->bigInteger('views')->default(0);
-            $table->unsignedInteger('class_id');
+            $table->unsignedBigInteger('class_id');
             $table->timestamps();
 
             $table->foreign('class_id')->references('id')

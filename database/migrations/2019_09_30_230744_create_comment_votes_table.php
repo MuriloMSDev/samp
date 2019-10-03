@@ -15,8 +15,9 @@ class CreateCommentVotesTable extends Migration
     {
         Schema::create('comment_votes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('comment_id');
+            $table->unsignedBigInteger('comment_id');
             $table->unsignedInteger('user_id');
+            $table->boolean('positive');
             $table->timestamps();
 
             $table->foreign('comment_id')->references('id')

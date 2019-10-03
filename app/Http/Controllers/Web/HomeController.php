@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 
 class HomeController extends Controller
 {
@@ -13,6 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('web.home');
+        $projects = Project::paginate(5);
+        return view('web.home', compact('projects'));
     }
 }

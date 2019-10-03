@@ -14,7 +14,12 @@
         "admin-lte": "^3.0.0-beta.2",
         "axios": "^0.18",
         "bootstrap": "^4.1.0",
+        "bootstrap-fileinput": "^5.0.6",
         "cross-env": "^5.1",
+        "css-element-queries": "^1.2.1",
+        "datatables.net-bs4": "^1.10.19",
+        "datatables.net-responsive-bs4": "^2.2.3",
+        "devicon": "^2.2.0",
         "izitoast": "^1.4.0",
         "jquery": "^3.2",
         "laravel-mix": "^4.0.7",
@@ -23,6 +28,9 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
+        "select2": "^4.0.10",
+        "select2-bootstrap4-theme": "^1.0.0",
+        "shave": "^2.5.4",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
     }
