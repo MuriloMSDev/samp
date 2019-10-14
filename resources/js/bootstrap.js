@@ -1,5 +1,3 @@
-window._ = require('lodash');
-
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -7,11 +5,23 @@ window._ = require('lodash');
  */
 
 try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
-    window.iziToast = require('izitoast');
+    window._ = require('lodash')
+    window.Popper = require('popper.js').default
+    window.$ = window.jQuery = require('jquery')
+    window.iziToast = require('izitoast')
+    window.shave = require('shave/dist/shave')
 
-    require('bootstrap');
+    require('bootstrap')
+    require('datatables.net-bs4')
+    require('datatables.net-responsive-bs4')
+    require('bootstrap-fileinput/js/fileinput')
+    require('bootstrap-fileinput/themes/fas/theme')
+    require('bootstrap-fileinput/js/locales/pt-BR')
+    require('select2')
+    require('shave/dist/jquery.shave')
+    require('admin-lte')
+
+    $.fn.select2.defaults.set('theme', 'bootstrap4')
 } catch (e) {}
 
 /**
@@ -20,9 +30,9 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
+window.axios = require('axios')
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -30,12 +40,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * a simple convenience so we don't have to attach every token manually.
  */
 
-let token = document.head.querySelector('meta[name="csrf-token"]');
+let token = document.head.querySelector('meta[name="csrf-token"]')
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error(
+        'CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token'
+    )
 }
 
 /**
@@ -46,11 +58,11 @@ if (token) {
 
 // import Echo from 'laravel-echo'
 
-// window.Pusher = require('pusher-js');
+// window.Pusher = require('pusher-js')
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
 //     key: process.env.MIX_PUSHER_APP_KEY,
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
-// });
+// })

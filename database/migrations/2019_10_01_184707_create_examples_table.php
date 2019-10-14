@@ -14,8 +14,8 @@ class CreateExamplesTable extends Migration
     public function up()
     {
         Schema::create('examples', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
+            $table->bigIncrements('id');
+            $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->text('content');
             $table->morphs('entity');

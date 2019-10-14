@@ -4,5 +4,5 @@ namespace App\Interfaces;
 
 interface ToolInterface
 {
-    public function name();
+    public static function build($data);
 }

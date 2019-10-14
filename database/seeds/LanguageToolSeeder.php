@@ -25,23 +25,25 @@ class LanguageToolSeeder extends Seeder
             'adapter' => ApiDocAdapter::class,
         ])->id;
 
-        $this->createLanguages(['JavaScript'], [$documentationJs, $apiDoc]);
+        $this->createLanguages(['JavaScript' => 'devicon-javascript-plain'], [$documentationJs, $apiDoc]);
 
         $this->createLanguages([
-            'PHP',
-            'C#',
-            'Java',
-            'Go',
-            'CoffeeScript',
-            'Ruby',
+            'PHP' => 'devicon-php-plain',
+            'C#' => 'devicon-csharp-plain',
+            'Java' => 'devicon-java-plain',
+            'Go' => 'devicon-go-plain',
+            'CoffeeScript' => 'devicon-coffeescript-original',
+            'Ruby' => 'devicon-ruby-plain',
         ], [$apiDoc]);
     }
 
     private function createLanguages($languages, $tools)
     {
-        foreach ($languages as $language) {
-            Language::firstOrCreate(['name' => $language])
-                ->tools()->sync($tools);
+        foreach ($languages as $language => $icon) {
+            Language::firstOrCreate(
+                ['name' => $language],
+                compact('icon')
+            )->tools()->sync($tools);
         }
     }
 }

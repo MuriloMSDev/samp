@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Enums\FunctionType;
+use App\Enums\VariableType;
+use App\Traits\Parameters;
 use Illuminate\Database\Eloquent\Model;
 
 class FunctionModel extends Model
 {
+    use Parameters;
+
     /**
      * The table associated with the model.
      *
@@ -22,6 +27,7 @@ class FunctionModel extends Model
         'name',
         'description',
         'content',
+        'type_enum',
         'url',
         'method',
         'views',
@@ -38,6 +44,15 @@ class FunctionModel extends Model
         'updated_at'
     ];
 
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'type',
+    ];
+
     /** Relationships */
 
     public function class()
@@ -45,8 +60,26 @@ class FunctionModel extends Model
         return $this->belongsTo(ClassModel::class);
     }
 
-    public function parameters()
+    public function comments()
     {
-        return $this->hasMany(Parameter::class);
+        return $this->hasMany(Comment::class, 'function_id');
+    }
+
+    public function return()
+    {
+        return $this->morphOne(Variable::class, 'entity')
+            ->where('for_enum', VariableType::RETURN);
+    }
+
+    public function examples()
+    {
+        return $this->morphMany(Example::class, 'entity');
+    }
+
+    /** Mutators */
+
+    public function getTypeAttribute()
+    {
+        return FunctionType::getDescription($this->type_enum) ?: null;
     }
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Parameter extends Model
+class Variable extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -14,8 +14,12 @@ class Parameter extends Model
     protected $fillable = [
         'name',
         'description',
+        'content',
         'type',
-        'function_id',
+        'for_enum',
+        'optional',
+        'entity_id',
+        'entity_type',
     ];
 
     /**
@@ -30,8 +34,15 @@ class Parameter extends Model
 
     /** Relationships */
 
-    public function function()
+    public function entity()
     {
-        return $this->belongsTo(FunctionModel::class);
+        return $this->morphTo();
+    }
+
+    /** Mutators */
+
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name'] = lcfirst($name);
     }
 }

@@ -1,3 +1,15 @@
 .search-input-group {
     max-width: 550px;
 }
+
+[class*='sidebar-dark'] .nav-divider {
+    border-bottom: 1px solid #4b545c;
+}
+
+[class*='sidebar-light'] .nav-divider {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.nav-divider {
+    margin-bottom: 0.25rem;
+}

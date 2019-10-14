@@ -10,7 +10,7 @@
 
     <title>
         @hasSection('title')
-            @yield('title') |
+        @yield('title') |
         @endif
         {{ config('app.name', 'SAMP') }}
     </title>
@@ -24,10 +24,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/auth/app.css') }}" rel="stylesheet">
 </head>
+
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
+            <a href="{{ route('home') }}" class="text-dark text-decoration-none"><b>{{ __('attributes.admin') }}</b>
+                {{ config('app.name', 'SAMP') }}</a>
         </div>
         @yield('content')
     </div>
@@ -39,4 +41,5 @@
     <script src="{{ asset('js/auth/app.js') }}"></script>
 
 </body>
+
 </html>

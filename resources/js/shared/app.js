@@ -3,6 +3,5 @@
  */
 
 require('../bootstrap')
-require('admin-lte')
 
 require('./load')

@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Parameters;
 use Illuminate\Database\Eloquent\Model;
 
 class ClassModel extends Model
 {
+    use Parameters;
+
     /**
      * The table associated with the model.
      *
@@ -44,6 +47,11 @@ class ClassModel extends Model
 
     public function functions()
     {
-        return $this->hasMany(FunctionModel::class);
+        return $this->hasMany(FunctionModel::class, 'class_id');
+    }
+
+    public function examples()
+    {
+        return $this->morphMany(Example::class, 'entity');
     }
 }

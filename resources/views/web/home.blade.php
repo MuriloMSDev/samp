@@ -2,64 +2,28 @@
 
 @section('content')
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-12 col-sm-10 col-lg-8 offset-sm-1 offset-lg-2">
+        @foreach ($projects as $project)
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.
-                </p>
-
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
+            <a href="{{ route('projects.show', $project)}}" class="card-link text-dark">
+                <div class="row no-gutters">
+                    <div class="col-auto d-flex mx-auto">
+                        <img src="{{ $project->image->url ?? asset("images/languages/{$project->language->icon}.svg") }}"
+                            alt="{{ $project->image->name ?? $project->language->name }}" class="p-1 align-self-center" width="150px">
+                    </div>
+                    <div class="col-md col-sm-12">
+                        <div class="card-block p-2">
+                            <h3 class="card-title text-lg">{{ $project->name }}</h3>
+                            <small class="card-subtitle ml-1">{{ $project->language->name }}</small>
+                            <p class="card-text text-justify ellipse-text">{{ $project->description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
+        @endforeach
 
-        <div class="card card-primary card-outline">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                    Some quick example text to build on the card title and make up the bulk of the
-                    card's
-                    content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-        </div><!-- /.card -->
+        {{ $projects->links() }}
     </div>
-    <!-- /.col-md-6 -->
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-            </div>
-            <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-
-        <div class="card card-primary card-outline">
-            <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-            </div>
-            <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional
-                    content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-md-6 -->
 </div>
 @endsection

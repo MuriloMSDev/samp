@@ -67,6 +67,11 @@ class Project extends Model
         return $this->hasMany(ClassModel::class);
     }
 
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'entity');
+    }
+
     /** Mutators */
 
     public function getTypeAttribute()
