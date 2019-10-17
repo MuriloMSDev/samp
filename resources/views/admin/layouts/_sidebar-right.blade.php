@@ -4,9 +4,9 @@
         <nav>
             <ul class="nav nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ active('admin.dashboard') }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>{{ __('attributes.dashboard') }}</p>
+                    <a href="{{ route('admin.account.edit') }}" class="nav-link {{ active('admin.account.edit') }}">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>{{ __('attributes.my_account') }}</p>
                     </a>
                 </li>
                 <li class="nav-item">

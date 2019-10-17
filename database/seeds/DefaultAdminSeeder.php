@@ -2,7 +2,6 @@
 
 use App\Models\Admin;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class DefaultAdminSeeder extends Seeder
 {
@@ -15,7 +14,7 @@ class DefaultAdminSeeder extends Seeder
     {
         Admin::firstOrCreate(['email' => 'admin@admin.com'], [
             'name'     => 'Admin',
-            'password' => Hash::make('abc12345')
+            'password' => 'abc12345'
         ]);
     }
 }

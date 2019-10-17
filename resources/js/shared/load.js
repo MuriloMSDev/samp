@@ -6,6 +6,7 @@ import imageUpload from '../components/image-upload'
 import select from '../components/select'
 import shave from '../components/shave'
 import comments from '../components/comments'
+import backToTop from '../components/back-to-top'
 
 $(document).ready(function() {
     formLink()
@@ -16,4 +17,5 @@ $(document).ready(function() {
     select()
     shave()
     comments()
+    backToTop()
 })

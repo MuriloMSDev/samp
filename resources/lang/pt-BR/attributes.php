@@ -41,6 +41,7 @@ return [
     'search'                => 'Procurar',
     'dashboard'             => 'Painel de Controle',
     'my_account'            => 'Minha Conta',
+    'my_account_edit'       => 'Editar Minha Conta',
     'my_projects'           => 'Meus Projetos',
     'project'               => 'Projeto',
     'projects'              => 'Projetos',

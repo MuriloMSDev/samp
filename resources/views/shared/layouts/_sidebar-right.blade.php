@@ -4,8 +4,8 @@
         <nav>
             <ul class="nav nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('user.dashboard') }}" class="nav-link {{ active('user.dashboard') }}">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <a href="{{ route('user.account.edit') }}" class="nav-link {{ active('user.account.edit') }}">
+                        <i class="nav-icon fas fa-user"></i>
                         <span>{{ __('attributes.my_account') }}</span>
                     </a>
                 </li>
