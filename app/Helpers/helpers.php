@@ -14,3 +14,8 @@ function input_error($errors, $name)
 {
     return $errors->has($name) ? ' is-invalid' : '';
 }
+
+function voted($comment, $positive)
+{
+    return user()->voted($comment, $positive);
+}

@@ -39,8 +39,18 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function commentVotes()
+    public function votes()
     {
         return $this->hasMany(CommentVote::class);
+    }
+
+    /** Methods */
+
+    public function voted(Comment $comment, $positive)
+    {
+        return $this->votes()->where([
+            'comment_id' => $comment->id,
+            'positive' => $positive
+        ])->exists();
     }
 }

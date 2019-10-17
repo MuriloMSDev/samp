@@ -177,6 +177,7 @@ return [
         App\Providers\CollectiveProvider::class,
         App\Providers\BladeServiceProvider::class,
         App\Providers\ValidatorServiceProvider::class,
+        App\Providers\MacrosProvider::class,
 
     ],
 

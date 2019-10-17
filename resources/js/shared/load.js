@@ -5,6 +5,7 @@ import datatables from '../components/datatables'
 import imageUpload from '../components/image-upload'
 import select from '../components/select'
 import shave from '../components/shave'
+import comments from '../components/comments'
 
 $(document).ready(function() {
     formLink()
@@ -14,4 +15,5 @@ $(document).ready(function() {
     imageUpload()
     select()
     shave()
+    comments()
 })

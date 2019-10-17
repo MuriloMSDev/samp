@@ -15,7 +15,6 @@ class Comment extends Model
         'content',
         'function_id',
         'user_id',
-        'parent_id',
     ];
 
     /**
@@ -26,6 +25,15 @@ class Comment extends Model
     protected $dates = [
         'created_at',
         'updated_at'
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'votes_quantity',
     ];
 
     /** Relationships */
@@ -45,23 +53,20 @@ class Comment extends Model
         return $this->hasMany(CommentVote::class);
     }
 
-    public function children()
+    /** Mutators */
+
+    public function getVotesQuantityAttribute()
     {
-        return $this->hasMany(static::class, 'parent_id');
+        return (
+            $this->votes()->wherePositive(true)->count() -
+            $this->votes()->wherePositive(false)->count()
+        );
     }
 
-    public function parent()
-    {
-        return $this->belongsTo(static::class, 'parent_id');
-    }
+    /** Methods */
 
-    public function allParentsComments()
+    public function isFrom(User $user)
     {
-        return $this->parent()->with('allParentsComments');
-    }
-
-    public function allChildrenComments()
-    {
-        return $this->children()->with('allChildrenComments');
+        return $this->user_id == $user->id;
     }
 }
