@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AccountUserRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -13,10 +13,9 @@ class AccountUserRequest extends FormRequest
      */
     public function rules()
     {
-        $user = user();
         $rules = [
             'name'     => 'required|string|max:255',
-            'email'    => "required|string|email|max:255|unique:users,email,{$user->id}",
+            'email'    => "required|string|email|max:255|unique:users,email,{$this->user->id}",
             'password' => 'nullable|string|min:8|confirmed',
         ];
 

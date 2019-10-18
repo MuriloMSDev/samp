@@ -35,8 +35,7 @@
             <div class="clearfix"></div>
             @endif
 
-
-            @foreach ($function->comments as $comment)
+            @foreach ($function->comments->sortByDesc('votes_quantity') as $comment)
             <hr>
             <div id="comment-{{ $comment->id }}" class="comment row">
                 <div class="col col-sm-2 col-md-1 px-0 text-center d-none d-sm-block">

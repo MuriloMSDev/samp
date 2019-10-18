@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProjectRequest;
+use App\Http\Requests\User\ProjectRequest;
 use App\Models\Project;
 use App\Models\Tool;
 use Yajra\DataTables\Facades\DataTables;
@@ -63,7 +63,7 @@ class ProjectController extends Controller
     /**
      * Store interface.
      *
-     * @param \App\Http\Requests\ProjectRequest $request
+     * @param \App\Http\Requests\User\ProjectRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(ProjectRequest $request)
@@ -74,7 +74,7 @@ class ProjectController extends Controller
         $project = $adapter::build($request->all());
 
         if (!$project) {
-            flash(__('messages.register.create_fail'))->error();
+            flash(__('messages.record.create_fail'))->error();
             return redirect()->back()->withInput();
         }
 
@@ -86,7 +86,7 @@ class ProjectController extends Controller
             ]);
         }
 
-        flash(__('messages.register.create_success'))->success();
+        flash(__('messages.record.create_success'))->success();
         return redirect(route('user.projects.index'));
     }
 
@@ -123,7 +123,7 @@ class ProjectController extends Controller
     /**
      * Update interface.
      *
-     * @param \App\Http\Requests\ProjectRequest $request
+     * @param \App\Http\Requests\User\ProjectRequest $request
      * @param \App\Models\Project $project
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -133,8 +133,7 @@ class ProjectController extends Controller
 
         $project->update($request->all());
 
-        $image = $request->file('image');
-        if ($image) {
+        if ($image = $request->file('image')) {
             if ($project->image) {
                 $project->image->delete();
             }
@@ -145,7 +144,7 @@ class ProjectController extends Controller
             ]);
         }
 
-        flash(__('messages.register.update_success'))->success();
+        flash(__('messages.record.update_success'))->success();
         return redirect(route('user.projects.index'));
     }
 

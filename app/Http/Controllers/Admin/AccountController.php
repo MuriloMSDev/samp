@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AccountAdminRequest;
+use App\Http\Requests\Admin\AccountRequest;
 
 class AccountController extends Controller
 {
@@ -33,14 +33,14 @@ class AccountController extends Controller
     /**
      * Update interface.
      *
-     * @param \App\Http\Requests\AccountAdminRequest $request
+     * @param \App\Http\Requests\Admin\AccountRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(AccountAdminRequest $request)
+    public function update(AccountRequest $request)
     {
         user('admin')->update($request->all());
 
-        flash(__('messages.register.update_success'))->success();
+        flash(__('messages.record.update_success'))->success();
         return redirect(route('admin.account.edit'));
     }
 }

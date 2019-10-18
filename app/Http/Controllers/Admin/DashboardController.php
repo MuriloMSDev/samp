@@ -15,12 +15,7 @@ class DashboardController extends Controller
     {
         return $this->view(
             'admin.dashboard.index',
-            __('attributes.dashboard'),
-            [
-                [
-                    'title' => __('attributes.dashboard')
-                ]
-            ]
+            __('attributes.dashboard')
         );
     }
 }

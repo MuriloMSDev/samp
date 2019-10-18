@@ -45,6 +45,16 @@ function start(datatableDiv) {
         responsive: responsive(table)
     }, datatable_config)
 
+    if(table.is('[per-page]')) {
+        let perPage = Number(table.attr('per-page'))
+
+        if($.inArray(perPage, config.lengthMenu) == -1) {
+            config.lengthMenu.push(perPage)
+            config.lengthMenu.sort((a, b) => {return a-b})
+        }
+        config.pageLength = perPage
+    }
+
     let datatable = $(table).dataTable(config)
 
     search(datatable, datatableDiv)

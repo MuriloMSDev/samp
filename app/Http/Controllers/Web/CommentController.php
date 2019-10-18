@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CommentRequest;
+use App\Http\Requests\Web\CommentRequest;
 use App\Models\ClassModel;
 use App\Models\Comment;
 use App\Models\CommentVote;
@@ -15,7 +15,7 @@ class CommentController extends Controller
     /**
      * Store interface.
      *
-     * @param \App\Http\Requests\CommentRequest $request
+     * @param \App\Http\Requests\Web\CommentRequest $request
      * @param \App\Models\Project $project
      * @param \App\Models\ClassModel $class
      * @param \App\Models\FunctionModel $function
@@ -32,7 +32,7 @@ class CommentController extends Controller
             'user_id' => user()->id
         ]);
 
-        flash(__('messages.register.create_success'))->success();
+        flash(__('messages.record.create_success'))->success();
         return redirect(route(
             'projects.classes.functions.show',
             compact(
@@ -67,8 +67,7 @@ class CommentController extends Controller
 
     private function vote(Comment $comment, $positive)
     {
-        $user = user();
-        if ($user_id = user()->id == $comment->user_id) {
+        if (($user_id = user()->id) == $comment->user_id) {
             return response()->json(['error' => true]);
         }
         CommentVote::deleteAndCreateIfDifferent([
