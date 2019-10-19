@@ -7,4 +7,4 @@ Route::group([
     Route::get('{project}/classes-datatable', 'ProjectController@classesDatatable')->name('classes.datatable');
 });
 
-Route::resource('projects', 'ProjectController')->only(['show']);
+Route::resource('projects', 'ProjectController')->only(['index', 'show']);

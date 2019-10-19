@@ -54,7 +54,14 @@ class Project extends Model
 
     public function language()
     {
-        return $this->languageTool->language();
+        return $this->hasOneThrough(
+            Language::class,
+            LanguageTool::class,
+            'id',
+            'id',
+            'language_tool_id',
+            'language_id'
+        );
     }
 
     public function tool()

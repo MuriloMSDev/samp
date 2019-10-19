@@ -4,7 +4,8 @@
 <div class="nav-divider"></div>
 @foreach ($languageClass::all() as $language)
 <li class="nav-item">
-    <a href="#" class="nav-link {{ active('#') }}">
+    <a href="{{ route('projects.index', search_params(['language' => $language->id])) }}"
+        class="nav-link {{ active('projects.index', ['language' => $language->id]) }}">
         <i class="nav-icon {{ $language->icon }}"></i>
         <p>{{ $language->name }}</p>
     </a>

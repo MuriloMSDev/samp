@@ -10,12 +10,12 @@
         @include('admin.layouts._navbar')
 
         <!-- Main Sidebar Container -->
-        @include('admin.layouts._sidebar-left')
+        @include('shared.layouts._sidebar-left')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            @include('admin.layouts._content-header')
+            @include('shared.layouts._content-header')
 
             <!-- Main content -->
             <div class="content">
@@ -33,6 +33,9 @@
 
         <!-- Control Sidebar -->
         @include('admin.layouts._sidebar-right')
+
+        <!-- Modals -->
+        @include('shared.layouts._modals')
 
         <!-- Main Footer -->
         @include('admin.layouts._footer')

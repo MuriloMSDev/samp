@@ -50,6 +50,7 @@ return [
     'projects'              => 'Projetos',
     'project_new'           => 'Novo Projeto',
     'project_edit'          => 'Editar Projeto',
+    'project_types'         => 'Tipos de Projeto',
     'class'                 => 'Classe',
     'classes'               => 'Classes',
     'function'              => 'Função',

@@ -3,6 +3,8 @@
     <div class="p-0">
         <nav>
             <ul class="nav nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header">{{ __('attributes.user') }}</li>
+                <div class="nav-divider"></div>
                 <li class="nav-item">
                     <a href="{{ route('user.account.edit') }}" class="nav-link {{ active('user.account.edit') }}">
                         <i class="nav-icon fas fa-user"></i>
