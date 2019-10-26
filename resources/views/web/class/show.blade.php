@@ -1,5 +1,9 @@
 @extends('shared.layouts.app')
 
+@section('sidebar')
+    @include('web.layouts.non-restful._sidebar-project')
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-11 mx-auto">
@@ -16,8 +20,8 @@
             @endif
         </div>
     </div>
-    @include('web.layouts._parameters', ['entity' => $class])
-    @include('web.layouts._examples', ['entity' => $class])
+    @include('web.layouts.non-restful._parameters', ['entity' => $class])
+    @include('web.layouts.non-restful._examples', ['entity' => $class])
     <div class="col-11 mx-auto">
         <div class="card">
             <div class="card-header">

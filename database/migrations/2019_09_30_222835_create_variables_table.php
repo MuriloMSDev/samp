@@ -18,12 +18,14 @@ class CreateVariablesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->text('content')->nullable();
             $table->text('type')->nullable();
-            $table->enum('for_enum', VariableType::getValues());
             $table->boolean('optional')->default(false);
-            $table->morphs('entity');
+            $table->string('default')->nullable();
+            $table->unsignedBigInteger('variable_group_id');
             $table->timestamps();
+
+            $table->foreign('variable_group_id')->references('id')
+                ->on('variable_groups')->onDelete('cascade');
         });
     }
 

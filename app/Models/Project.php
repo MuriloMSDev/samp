@@ -85,4 +85,16 @@ class Project extends Model
     {
         return ProjectType::getDescription($this->type_enum) ?: null;
     }
+
+    /** Methods */
+
+    public function isRestful()
+    {
+        return $this->type_enum == ProjectType::RESTFUL;
+    }
+
+    public function isNonRestful()
+    {
+        return $this->type_enum == ProjectType::NON_RESTFUL;
+    }
 }

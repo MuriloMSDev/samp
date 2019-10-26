@@ -49,8 +49,13 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        $view = 'non-restful';
+        if ($project->isRestful()) {
+            $view = 'restful';
+        }
+
         return $this->view(
-            'web.project.show',
+            "web.project.{$view}",
             [
                 'title'    => $project->name,
                 'subTitle' => $project->language->name

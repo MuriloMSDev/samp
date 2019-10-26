@@ -6,7 +6,7 @@
                 <li class="nav-header">{{ __('attributes.admin') }}</li>
                 <div class="nav-divider"></div>
                 <li class="nav-item">
-                    <a href="{{ route('admin.account.edit') }}" class="nav-link {{ active('admin.account.edit') }}">
+                    <a href="{{ route('admin.account.edit') }}" class="nav-link {{ route_class('admin.account.edit') }}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>{{ __('attributes.my_account') }}</p>
                     </a>

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Variable extends Model
+class VariableGroup extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,12 +12,9 @@ class Variable extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'description',
-        'type',
-        'optional',
-        'default',
-        'variable_group_id',
+        'for_enum',
+        'entity_id',
+        'entity_type',
     ];
 
     /**
@@ -32,15 +29,18 @@ class Variable extends Model
 
     /** Relationships */
 
-    public function variableGroup()
+    public function entity()
     {
-        return $this->belongsTo(VariableGroup::class);
+        return $this->morphTo();
     }
 
-    /** Mutators */
-
-    public function setNameAttribute($name)
+    public function variables()
     {
-        $this->attributes['name'] = lcfirst($name);
+        return $this->hasMany(Variable::class);
+    }
+
+    public function example()
+    {
+        return $this->morphOne(Example::class, 'entity');
     }
 }

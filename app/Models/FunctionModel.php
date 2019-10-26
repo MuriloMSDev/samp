@@ -26,7 +26,6 @@ class FunctionModel extends Model
     protected $fillable = [
         'name',
         'description',
-        'content',
         'type_enum',
         'url',
         'method',
@@ -65,10 +64,28 @@ class FunctionModel extends Model
         return $this->hasMany(Comment::class, 'function_id');
     }
 
-    public function return()
+    public function returns()
     {
-        return $this->morphOne(Variable::class, 'entity')
+        return $this->morphOne(VariableGroup::class, 'entity')
             ->where('for_enum', VariableType::RETURN);
+    }
+
+    public function success()
+    {
+        return $this->morphOne(VariableGroup::class, 'entity')
+            ->where('for_enum', VariableType::SUCCESS);
+    }
+
+    public function error()
+    {
+        return $this->morphOne(VariableGroup::class, 'entity')
+            ->where('for_enum', VariableType::ERROR);
+    }
+
+    public function header()
+    {
+        return $this->morphOne(VariableGroup::class, 'entity')
+            ->where('for_enum', VariableType::HEADER);
     }
 
     public function examples()

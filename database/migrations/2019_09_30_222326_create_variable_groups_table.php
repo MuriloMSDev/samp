@@ -1,10 +1,11 @@
 <?php
 
+use App\Enums\VariableType;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateToolsTable extends Migration
+class CreateVariableGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +14,10 @@ class CreateToolsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tools', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('adapter')->unique();
+        Schema::create('variable_groups', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->enum('for_enum', VariableType::getValues());
+            $table->morphs('entity');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateToolsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tools');
+        Schema::dropIfExists('variable_groups');
     }
 }

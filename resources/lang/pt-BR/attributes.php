@@ -83,6 +83,11 @@ return [
     'admin_area'            => 'Área Administrativa',
     'optional'              => 'Opcional',
     'code'                  => 'Código',
+    'url'                   => 'URL',
+    'default_value'         => 'Valor Padrão',
+    'header'                => 'Cabeçalho',
+    'success_return'        => 'Retorno de Sucesso',
+    'error_return'          => 'Retorno de Erro',
     'boolean'               => [
         '0'     => 'Não',
         'false' => 'Não',

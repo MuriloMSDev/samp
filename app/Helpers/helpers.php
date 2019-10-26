@@ -1,19 +1,23 @@
 <?php
 
-function active($route, $params = [])
+function route_class($route, $params = [], $class = 'active')
 {
-    if (!request()->routeIs($route)) {
+    if (
+        !request()->routeIs($route) &&
+        !request()->fullUrlIs($route) &&
+        !request()->is($route)
+    ) {
         return '';
     }
 
     if (empty($params)) {
-        return 'active';
+        return $class;
     }
 
     $query = request()->query();
     foreach ($params as $key => $value) {
         if (isset($query[$key]) && $query[$key] == $value) {
-            return 'active';
+            return $class;
         }
     }
     return '';
@@ -37,4 +41,26 @@ function voted($comment, $positive)
 function search_params($params = [])
 {
     return array_merge(request()->query(), $params);
+}
+
+function method_badge($method)
+{
+    $method = ucfirst($method);
+    switch (strtolower($method)) {
+        case 'get':
+            $color = 'success';
+            break;
+        case 'post':
+        case 'put':
+        case 'patch':
+            $color = 'primary';
+            break;
+        case 'delete':
+            $color = 'danger';
+            break;
+        default:
+            return '';
+    }
+
+    return "<span class='badge badge-{$color}'>{$method}</span>";
 }

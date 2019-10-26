@@ -12,7 +12,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link {{ active('home') }}">
+                    <a href="{{ route('home') }}" class="nav-link {{ route_class('home') }}">
                         <i class="nav-icon fas fa-home"></i>
                         <p>{{ __('attributes.home') }}</p>
                     </a>
@@ -30,21 +30,25 @@
                 <li class="nav-header">{{ __('attributes.admin') }}</li>
                 <div class="nav-divider"></div>
                 <li class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ active('admin.dashboard') }}">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ route_class('admin.dashboard') }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>{{ __('attributes.admin_area') }}</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.users.index') }}" class="nav-link {{ active('admin.users.index') }}">
+                    <a href="{{ route('admin.users.index') }}" class="nav-link {{ route_class('admin.users.index') }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>{{ __('attributes.users') }}</p>
                     </a>
                 </li>
                 @endif
 
+                @hasSection('sidebar')
+                @yield('sidebar')
+                @else
                 @include('shared.layouts._sidebar-languages')
                 @include('shared.layouts._sidebar-project-types')
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

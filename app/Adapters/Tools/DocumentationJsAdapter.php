@@ -80,10 +80,18 @@ class DocumentationJsAdapter implements ToolInterface
         }
     }
 
-    private static function parameters($parameters, $entity)
+    private static function parameters($params, $entity)
     {
-        foreach ($parameters??[] as $item) {
-            $entity->parameters()->create([
+        if (!$params) {
+            return;
+        }
+
+        $parameters = $entity->parameters()->create([
+            'for_enum' => VariableType::PARAMETER
+        ]);
+
+        foreach ($params as $item) {
+            $parameters->variables()->create([
                 'name' => $item['name'],
                 'description' => $item['description'],
                 'type' => (
@@ -91,7 +99,6 @@ class DocumentationJsAdapter implements ToolInterface
                     $item['type']['expression']['name'] ??
                     null
                 ),
-                'for_enum' => VariableType::PARAMETER,
                 'optional' => (
                     ($item['type']['type'] ?? null) == 'OptionalType'
                 )
@@ -99,25 +106,28 @@ class DocumentationJsAdapter implements ToolInterface
         }
     }
 
-    private static function return($return, $entity)
+    private static function return($data, $entity)
     {
-        if (!$return) {
+        if (!$data) {
             return;
         }
 
-        $entity->return()->create([
-            'name' => (
-                $return['type']['name'] ??
-                $return['type']['type'] ??
-                'Any'
-            ),
-            'description' => $return['description'],
-            'type' => (
-                $return['type']['name'] ??
-                $return['type']['type'] ??
-                'Any'
-            ),
+        $return = $entity->returns()->create([
             'for_enum' => VariableType::RETURN,
+        ]);
+
+        $return->variables()->create([
+            'name' => (
+                $data['type']['name'] ??
+                $data['type']['type'] ??
+                'Any'
+            ),
+            'description' => $data['description'],
+            'type' => (
+                $data['type']['name'] ??
+                $data['type']['type'] ??
+                'Any'
+            )
         ]);
     }
 }

@@ -1,5 +1,9 @@
 @extends('shared.layouts.app')
 
+@section('sidebar')
+    @include('web.layouts.non-restful._sidebar-project')
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-11 mx-auto">
@@ -21,8 +25,8 @@
             @endif
         </div>
     </div>
-    @include('web.layouts._parameters', ['entity' => $function])
-    @if ($function->return)
+    @include('web.layouts.non-restful._parameters', ['entity' => $function])
+    @if ($return = $function->returns)
     <div class="col-11 mx-auto">
         <div class="card">
             <div class="card-header">
@@ -38,34 +42,22 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($return->variables as $item)
                         <tr>
-                            <td>{{ $function->return->name }}</td>
-                            <td>{{ $function->return->type }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->type }}</td>
                             <td>
-                                @markdown($function->return->description)
+                                @markdown($item->description)
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
     @endif
-    @if ($function->content)
-    <div class="col-11 mx-auto">
-        <div class="card">
-            <div class="card-header">
-                <h3>{{ __('attributes.code') }}</h3>
-            </div>
-            <div class="card-body">
-                <pre>
-                    <code>{{ $function->content }}</code>
-                </pre>
-            </div>
-        </div>
-    </div>
-    @endif
-    @include('web.layouts._examples', ['entity' => $function])
+    @include('web.layouts.non-restful._examples', ['entity' => $function])
     @if ($function->comments->count() || user())
         @include('web.function.partials._comments')
     @endif

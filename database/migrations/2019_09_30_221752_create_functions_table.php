@@ -18,7 +18,6 @@ class CreateFunctionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->text('content')->nullable();
             $table->enum('type_enum', FunctionType::getValues())->nullable();
             $table->text('url')->nullable();
             $table->string('method')->nullable();

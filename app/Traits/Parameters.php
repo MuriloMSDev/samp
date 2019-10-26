@@ -3,28 +3,32 @@
 namespace App\Traits;
 
 use App\Enums\VariableType;
-use App\Models\Variable;
+use App\Models\VariableGroup;
 
 trait Parameters
 {
     public function parameters()
     {
-        return $this->morphMany(Variable::class, 'entity')
+        return $this->morphOne(VariableGroup::class, 'entity')
             ->where('for_enum', VariableType::PARAMETER);
     }
 
     public function renderParameters()
     {
-        $parameters = [];
-        foreach ($this->parameters as $parameter) {
+        if (!$parameters = $this->parameters) {
+            return null;
+        }
+
+        $params = [];
+        foreach ($parameters->variables as $parameter) {
             $str = $parameter->type;
             $str .= " $parameter->name";
             if ($parameter->optional) {
                 $str = "[{$str}]";
             }
-            $parameters[] = trim($str);
+            $params[] = trim($str);
         }
-        $parameters = implode(', ', $parameters);
-        return $parameters ? "({$parameters})" : null;
+        $params = implode(', ', $params);
+        return "({$params})";
     }
 }

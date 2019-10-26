@@ -14,7 +14,6 @@ class Tool extends Model
      */
     protected $fillable = [
         'name',
-        'description',
         'adapter',
     ];
 

@@ -13,7 +13,6 @@ class Example extends Model
      */
     protected $fillable = [
         'name',
-        'description',
         'content',
         'entity_id',
         'entity_type',

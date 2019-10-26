@@ -1,5 +1,9 @@
 @extends('shared.layouts.app')
 
+@section('sidebar')
+@include('web.layouts.non-restful._sidebar-project')
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-11 mx-auto">
@@ -7,7 +11,8 @@
             <div class="row no-gutters">
                 <div class="col-auto d-flex mx-auto">
                     <img src="{{ $project->image->url ?? asset("images/languages/{$project->language->icon}.svg") }}"
-                        alt="{{ $project->image->name ?? $project->language->name }}" class="p-1 align-self-center" width="150px">
+                        alt="{{ $project->image->name ?? $project->language->name }}" class="p-1 align-self-center"
+                        width="150px">
                 </div>
                 <div class="col-md col-sm-12">
                     <div class="card-block p-2">
@@ -24,7 +29,7 @@
             </div>
             <div class="card-body">
                 @datatable([
-                    'url'     => route('projects.classes.datatable', $project),
+                    'url' => route('projects.classes.datatable', $project),
                     'columns' => [
                         ['name' => 'name'],
                         ['name' => 'description']
@@ -34,8 +39,8 @@
                         'links' => [
                             [
                                 'title' => __('attributes.show'),
-                                'url'   => route('projects.classes.show', [$project, '(id)']),
-                                'icon'  => 'fa-search'
+                                'url' => route('projects.classes.show', [$project, '(id)']),
+                                'icon' => 'fa-search'
                             ]
                         ],
                         'width' => '90px',

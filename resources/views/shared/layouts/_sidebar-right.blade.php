@@ -6,13 +6,13 @@
                 <li class="nav-header">{{ __('attributes.user') }}</li>
                 <div class="nav-divider"></div>
                 <li class="nav-item">
-                    <a href="{{ route('user.account.edit') }}" class="nav-link {{ active('user.account.edit') }}">
+                    <a href="{{ route('user.account.edit') }}" class="nav-link {{ route_class('user.account.edit') }}">
                         <i class="nav-icon fas fa-user"></i>
                         <span>{{ __('attributes.my_account') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('user.projects.index') }}" class="nav-link {{ active('user.projects.*') }}">
+                    <a href="{{ route('user.projects.index') }}" class="nav-link {{ route_class('user.projects.*') }}">
                         <i class="nav-icon fas fa-book"></i>
                         <span>{{ __('attributes.my_projects') }}</span>
                     </a>
