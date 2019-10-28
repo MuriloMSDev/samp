@@ -19,6 +19,7 @@ try {
     require('bootstrap-fileinput/js/locales/pt-BR')
     require('select2')
     require('shave/dist/jquery.shave')
+    require('overlayscrollbars')
     require('admin-lte')
 
     $.fn.select2.defaults.set('theme', 'bootstrap4')
