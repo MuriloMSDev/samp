@@ -54,6 +54,8 @@ class ProjectController extends Controller
             $view = 'restful';
         }
 
+        $project->increaseViews();
+
         return $this->view(
             "web.project.{$view}",
             [

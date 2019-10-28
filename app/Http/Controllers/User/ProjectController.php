@@ -19,16 +19,7 @@ class ProjectController extends Controller
     {
         return $this->view(
             'user.project.index',
-            __('attributes.projects'),
-            [
-                [
-                    'title' => __('attributes.dashboard'),
-                    'url' => route('user.dashboard')
-                ],
-                [
-                    'title' => __('attributes.projects')
-                ],
-            ]
+            __('attributes.projects')
         );
     }
 
@@ -45,10 +36,6 @@ class ProjectController extends Controller
             'user.project.create',
             __('attributes.projects'),
             [
-                [
-                    'title' => __('attributes.dashboard'),
-                    'url' => route('user.dashboard')
-                ],
                 [
                     'title' => __('attributes.projects'),
                     'url' => route('user.projects.index')
@@ -105,10 +92,6 @@ class ProjectController extends Controller
             'user.project.edit',
             __('attributes.projects'),
             [
-                [
-                    'title' => __('attributes.dashboard'),
-                    'url' => route('user.dashboard')
-                ],
                 [
                     'title' => __('attributes.projects'),
                     'url' => route('user.projects.index')

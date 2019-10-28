@@ -5,11 +5,13 @@ namespace App\Models;
 use App\Enums\FunctionType;
 use App\Enums\VariableType;
 use App\Traits\Parameters;
+use App\Traits\Views;
 use Illuminate\Database\Eloquent\Model;
 
 class FunctionModel extends Model
 {
     use Parameters;
+    use Views;
 
     /**
      * The table associated with the model.

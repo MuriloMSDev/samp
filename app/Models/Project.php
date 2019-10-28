@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use App\Enums\ProjectType;
+use App\Traits\Views;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    use Views;
+
     /**
      * The attributes that are mass assignable.
      *

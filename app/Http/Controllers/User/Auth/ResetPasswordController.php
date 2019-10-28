@@ -120,7 +120,7 @@ class ResetPasswordController extends Controller
     public function redirectTo()
     {
         flash(__('messages.welcome'))->success();
-        return route('user.dashboard');
+        return route('home');
     }
 
     /**

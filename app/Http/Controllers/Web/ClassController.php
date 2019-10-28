@@ -18,6 +18,8 @@ class ClassController extends Controller
      */
     public function show(Project $project, ClassModel $class)
     {
+        $class->increaseViews();
+
         return $this->view(
             'web.class.show',
             [

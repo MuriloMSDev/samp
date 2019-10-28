@@ -19,6 +19,8 @@ class FunctionController extends Controller
      */
     public function show(Project $project, ClassModel $class, FunctionModel $function)
     {
+        $function->increaseViews();
+
         return $this->view(
             'web.function.show',
             [

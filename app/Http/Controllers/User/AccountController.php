@@ -17,16 +17,7 @@ class AccountController extends Controller
         $user = user();
         return $this->view(
             'user.account.edit',
-            __('attributes.my_account'),
-            [
-                [
-                    'title' => __('attributes.dashboard'),
-                    'url' => route('user.dashboard')
-                ],
-                [
-                    'title' => __('attributes.my_account')
-                ]
-            ]
+            __('attributes.my_account')
         )->with(compact('user'));
     }
 

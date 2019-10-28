@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Parameters;
+use App\Traits\Views;
 use Illuminate\Database\Eloquent\Model;
 
 class ClassModel extends Model
 {
     use Parameters;
+    use Views;
 
     /**
      * The table associated with the model.
