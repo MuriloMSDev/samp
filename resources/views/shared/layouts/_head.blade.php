@@ -16,4 +16,5 @@
     </title>
 
     <link rel="stylesheet" href="{{ mix('css/shared/app.css') }}">
+    @stack('stylesheets')
 </head>

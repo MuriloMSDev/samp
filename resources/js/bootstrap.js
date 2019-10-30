@@ -20,6 +20,7 @@ try {
     require('select2')
     require('shave/dist/jquery.shave')
     require('overlayscrollbars')
+    require('chart.js')
     require('admin-lte')
 
     $.fn.select2.defaults.set('theme', 'bootstrap4')

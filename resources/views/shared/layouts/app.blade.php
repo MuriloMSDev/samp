@@ -48,6 +48,7 @@
     <!-- REQUIRED SCRIPTS -->
 
     <script src="{{ mix('js/shared/app.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

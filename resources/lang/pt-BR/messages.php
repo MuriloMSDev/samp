@@ -12,4 +12,6 @@ return [
         'sure_to_delete' => 'Deseja deletar esse registro?',
     ],
     'welcome' => 'Seja bem-vindo',
+    'percent_of' => ':value% dos :of',
+    'all_of' => 'Todos os :of',
 ];
