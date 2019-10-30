@@ -41,6 +41,12 @@
                         <p>{{ __('attributes.users') }}</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.projects.index') }}" class="nav-link {{ route_class('admin.projects.index') }}">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>{{ __('attributes.projects') }}</p>
+                    </a>
+                </li>
                 @endif
 
                 @hasSection('sidebar')
