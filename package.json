@@ -35,5 +35,8 @@
         "shave": "^2.5.4",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
+    },
+    "resolutions": {
+        "svgo": "1.3.0"
     }
 }
