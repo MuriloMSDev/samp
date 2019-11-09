@@ -107,8 +107,8 @@ class ApiDocAdapter implements ToolInterface
             foreach ($fields->first() as $variable) {
                 $group->variables()->create([
                     'name' => $variable['field'],
-                    'description' => $variable['description'],
-                    'type' => $variable['type'],
+                    'description' => $variable['description'] ?? null,
+                    'type' => $variable['type'] ?? null,
                     'optional' => $variable['optional'],
                     'default' => ($variable['defaultValue'] ?? null)
                 ]);
