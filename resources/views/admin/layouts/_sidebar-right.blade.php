@@ -3,7 +3,7 @@
     <div class="p-0">
         <nav>
             <ul class="nav nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <li class="nav-header">{{ __('attributes.admin') }}</li>
+                <span class="p-2">{{ __('attributes.admin') }}</span>
                 <div class="nav-divider"></div>
                 <li class="nav-item">
                     <a href="{{ route('admin.account.edit') }}" class="nav-link {{ route_class('admin.account.edit') }}">
