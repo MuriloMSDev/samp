@@ -39,19 +39,31 @@
             <hr>
             <div id="comment-{{ $comment->id }}" class="comment row">
                 <div class="col col-sm-2 col-md-1 px-0 text-center d-none d-sm-block">
+                    @if (user())
                     <button url="{{ route('comments.up', $comment) }}" class-type="btn-primary"
                         class="btn-vote btn {{ voted($comment, true) ? 'btn-primary' : 'btn-light'}} btn-sm col-auto"
                         {{ $comment->isFrom(user()) ? 'disabled' : '' }}>
                         <i class="fas fa-arrow-up"></i>
                     </button>
+                    @else
+                    <button class="btn-vote btn btn-light btn-sm col-auto" disabled>
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                    @endif
                     <div class="col-12 votes-quantity">
                         {{ $comment->votes_quantity }}
                     </div>
+                    @if (user())
                     <button url="{{ route('comments.down', $comment) }}" class-type="btn-danger"
                         class="btn-vote btn {{ voted($comment, false) ? 'btn-danger' : 'btn-light'}} btn-sm col-auto"
                         {{ $comment->isFrom(user()) ? 'disabled' : '' }}>
                         <i class="fas fa-arrow-down"></i>
                     </button>
+                    @else
+                    <button class="btn-vote btn btn-light btn-sm col-auto" disabled>
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                    @endif
                 </div>
                 <div class="col-12 col-sm-10 col-md-11 pl-sm-0">
                     <div class="card">
@@ -61,19 +73,31 @@
                                     <h5>{{ $comment->user->name }}</h5>
                                 </div>
                                 <div class="col-4 float-right d-flex d-sm-none">
+                                    @if (user())
                                     <button url="{{ route('comments.up', $comment) }}" class-type="btn-primary"
                                         class="btn-vote btn {{ voted($comment, true) ? 'btn-primary' : 'btn-light'}} btn-sm float-right"
                                         {{ $comment->isFrom(user()) ? 'disabled' : '' }}>
                                         <i class="fas fa-arrow-up"></i>
                                     </button>
+                                    @else
+                                    <button class="btn-vote btn btn-light btn-sm float-right" disabled>
+                                        <i class="fas fa-arrow-up"></i>
+                                    </button>
+                                    @endif
                                     <span class="float-right px-1 align-self-center votes-quantity">
                                         {{ $comment->votes_quantity }}
                                     </span>
+                                    @if (user())
                                     <button url="{{ route('comments.down', $comment) }}" class-type="btn-danger"
                                         class="btn-vote btn {{ voted($comment, false) ? 'btn-danger' : 'btn-light'}} btn-sm float-right"
                                         {{ $comment->isFrom(user()) ? 'disabled' : '' }}>
                                         <i class="fas fa-arrow-down"></i>
                                     </button>
+                                    @else
+                                    <button class="btn-vote btn btn-light btn-sm float-right" disabled>
+                                        <i class="fas fa-arrow-down"></i>
+                                    </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
