@@ -46,13 +46,6 @@ class User extends Authenticatable
         return $this->hasMany(CommentVote::class);
     }
 
-    /** Mutators */
-
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = Hash::make($password);
-    }
-
     /** Methods */
 
     public function voted(Comment $comment, $positive)

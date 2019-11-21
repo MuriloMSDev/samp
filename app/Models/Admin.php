@@ -29,13 +29,6 @@ class Admin extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /** Mutators */
-
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = Hash::make($password);
-    }
-
     /** Overrides */
 
     /**

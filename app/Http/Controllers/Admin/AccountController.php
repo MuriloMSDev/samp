@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AccountRequest;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
@@ -38,7 +39,15 @@ class AccountController extends Controller
      */
     public function update(AccountRequest $request)
     {
-        user('admin')->update($request->all());
+        $data = $request->all();
+
+        if (is_null($data['password'])) {
+            unset($data['password']);
+        } else {
+            $data['password'] = Hash::make($data['password']);
+        }
+
+        user('admin')->update($data);
 
         flash(__('messages.record.update_success'))->success();
         return redirect(route('admin.account.edit'));
