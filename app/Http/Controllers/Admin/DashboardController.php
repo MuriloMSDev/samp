@@ -20,9 +20,9 @@ class DashboardController extends Controller
         $projects = Project::all();
         $projectsQty = $projects->count();
         $restfulQty = $projects->where('type_enum', ProjectType::RESTFUL)->count();
-        $restfulPercent = ($restfulQty*100)/$projectsQty;
+        $restfulPercent = number_format(($restfulQty*100)/$projectsQty, 2, '.', '');
         $nonRestfulQty = $projects->where('type_enum', ProjectType::NON_RESTFUL)->count();
-        $nonRestfulPercent = ($nonRestfulQty*100)/$projectsQty;
+        $nonRestfulPercent = number_format(($nonRestfulQty*100)/$projectsQty, 2, '.', '');
         $usersQty = User::count();
 
         $projectsChart = new CountLastMonthsChart('projects', __('attributes.projects'));
